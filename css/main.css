@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+div {
+    margin: 10px;
+    display: flex;
+    margin: 10px 0 10px 0;
+} 
+
+p {
+    margin: 0;
+}
+
+.text-between {
+    font-size: 1rem;
+    margin: 10px 0 10px 0;
+}
+
+select {
+    margin: 0 0 0 3px;
+}

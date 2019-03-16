@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">
     <script type="module" src="/js/main.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    
+    <div class="container">
+
+        <div class="text-between">
+            <p>Jag vill</p>
+        </div>
+
+        <div>
+            <input class="buy-sell" name="buySell" id="buy" type="radio" value="buy" checked />
+            <label for="buy">köpa</label>
+            <input class="buy-sell" name="buySell" id="sell" type="radio" value="sell" />
+            <label for="sell">sälja</label>
+        </div>
+        <div>
+            <input name="amount" id="amount" type="number" min="0" />
+            <select name="currency" id="currencyOne">
+                
+            </select>
+        </div>
+
+        <div class="text-between">
+            <p id="buySellText">
+                och betala med
+            </p>
+            <select name="currency" id="currencyTwo">
+                
+            </select>
+        </div>
+
+        <div class="text-between">
+            <button id="getExchangeBtn">
+                =
+            </button>
+        </div>
+        <div class="result">
+
+        </div>
+    </div>
 </body>
+
 </html>
