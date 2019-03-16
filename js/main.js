@@ -1,42 +1,43 @@
-import {getExchangeRates} from "./api.js"
+import { convert, getExchangeRates } from "./api.js"
 
-// var app_id = "e359b7178de94d29bb3fa8082052ca72"
-// var url = "https://openexchangerates.org/api/latest.json?app_id=" + app_id
+$(document).ready(() => {
 
-// async function getData() {
-//     var promise = await fetch(url)
-//     var result = await promise.json()
-//     for (const e in result.rates) {
-//         console.log("Key: " + e + " Value: " + result.rates[e]);
-//     }
-// }
-
-// getData();
-
-//test();
-
-$(document).ready(()=>{
     loadDropDown();
 
-    $(".buy-sell").on("change", function(radio){
-        if(radio.target.value === "buy") {
+    $(".buy-sell").on("change", function (radio) {
+        if (radio.target.value === "buy") {
             $("#buySellText").text("och betala med")
-        } else if(radio.target.value === "sell") {
+        } else if (radio.target.value === "sell") {
             $("#buySellText").text("och få betalat i")
         }
     })
 
-    $("#getExchangeBtn").on("click", function(){
+    $("#getExchangeBtn").on("click", function () {
 
-        var results = getExchangeRates();
-        
+        setAmount();
     })
 })
+
+async function setAmount() {
+    var radioValue = $("input[name=buySell]:checked").val()
+    var from = $("#currencyOne").val();
+    var to = $("#currencyTwo").val();
+    var amount = $("#amount").val();
+
+    var result = await convert(from, to, amount);
+
+
+    if (radioValue === "buy") {
+
+    } else if (radioValue === "sell") {
+
+    }
+}
 
 async function loadDropDown() {
 
     var results = await getExchangeRates();
-    for(const rate in results.rates) {
+    for (const rate in results.rates) {
         var opt = document.createElement("option");
         opt.value = rate;
         opt.innerHTML = rate;
@@ -47,5 +48,5 @@ async function loadDropDown() {
         opt2.innerHTML = rate;
         $("#currencyTwo").append(opt2);
     }
-    
+
 }
