@@ -6,9 +6,11 @@ $(document).ready(() => {
 
     $(".buy-sell").on("change", function (radio) {
         if (radio.target.value === "buy") {
-            $("#buySellText").text("och betala med")
+            $("#buySellText").text("och betala med");
+            $("#result").text(""); 
         } else if (radio.target.value === "sell") {
-            $("#buySellText").text("och få betalat i")
+            $("#buySellText").text("och få betalat i");
+            $("#result").text("");
         }
     })
 
@@ -24,13 +26,17 @@ async function setAmount() {
     var to = $("#currencyTwo").val();
     var amount = $("#amount").val();
 
+    if (from === to || amount === 0 || amount == "") {
+        $("#result").text("Fyll in en summa och se till att du har valt olika valutor.");
+        return;
+    }
     var result = await convert(from, to);
 
 
     if (radioValue === "buy") {
-        $("#result").text("You will have to pay " + Math.round(Object.entries(result.rates)[0][1] * amount*100)/100 + " " + Object.entries(result.rates)[0][0])
+        $("#result").text("du får betala " + Math.round(Object.entries(result.rates)[0][1] * amount*100)/100 + " " + Object.entries(result.rates)[0][0])
     } else if (radioValue === "sell") {
-        $("#result").text("You will get " + Math.round(Object.entries(result.rates)[0][1] * amount*100)/100 + " " + Object.entries(result.rates)[0][0])
+        $("#result").text("du får " + Math.round(Object.entries(result.rates)[0][1] * amount*100)/100 + " " + Object.entries(result.rates)[0][0])
     }
 }
 
